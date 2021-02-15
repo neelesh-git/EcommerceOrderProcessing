@@ -8,7 +8,6 @@
 - Download Docker (for Containerization using Docker) (https://www.docker.com/products/docker-desktop)
 
 
-
 ### Setup 
 - Open this repository in local IDE.
 - Install maven dependencies. To do this, right click on the root `OrderProcessing` and click on `maven` then click on `download sources & documentation`.
@@ -24,7 +23,13 @@
 	- Docker provides an interface between PostgreSQL instance and SpringBoot application.
 	
 	
-
+### Flow for Creating Order
+ - Create a customer and you get a cart id.
+ - Add items to that cart id, api's like delete item, get cart items, get items by id and get all items can be used.
+ - With this cart id place an order, add payment details, shipping address and billing address.
+ - You can perform operations like get orders, delete payment, cancel order and get all orders.
+ 
+ 
 ### Database Schema
 - Given legacy schema contains all the data in a single table. I have added necessary entities and split the data into 6 different tables (Address, Cart, Customer, Items, Order, Payments). By doing so the I could achieve normalized database schema.
 
