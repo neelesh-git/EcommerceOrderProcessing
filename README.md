@@ -9,7 +9,7 @@
 
 
 
-### Setup  //paraphrase and jumble
+### Setup 
 - Open this repository in local IDE.
 - Install maven dependencies. To do this, right click on the root `OrderProcessing` and click on `maven` then click on `download sources & documentation`.
 - Database name: `orderprocessingdb`
