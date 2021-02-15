@@ -5,7 +5,6 @@
 - Java, PostgreSQL, SpringBoot, JPA, Hibernate, Docker, Postman, Swagger
 - Install Java (SDK 14) (https://www.oracle.com/java/technologies/javase/jdk14-archive-downloads.html)
 - Download PostgreSQL (https://www.postgresql.org/download/)
-- Download and install Postman for testing API endpoints: (https://www.postman.com/downloads/)
 - Download Docker (for Containerization using Docker) (https://www.docker.com/products/docker-desktop)
 
 
