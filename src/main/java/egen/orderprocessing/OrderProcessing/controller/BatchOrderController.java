@@ -23,9 +23,9 @@ public class BatchOrderController {
         return "Order Placed.";
     }
 
-    @PostMapping("/updateBatchOrder/{batch_id}")
-    public String update_order(@PathVariable("batch_id")String batch_id, @RequestBody Order order){
-        log.info("Running update_order for order Id - " + batch_id + " from BatchOrderController");
+    @PostMapping("/updateBatchOrder")
+    public String update_order(@RequestBody Order order){
+        log.info("Running update_order for order Id - " + order.getOrder_id() + " from BatchOrderController");
         Order temp = order;
         kafkaTemplate.send(topic, temp);
         return "Order has been updated.";

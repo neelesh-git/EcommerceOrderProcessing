@@ -3,6 +3,7 @@ package egen.orderprocessing.OrderProcessing.services;
 import egen.orderprocessing.OrderProcessing.entity.*;
 import egen.orderprocessing.OrderProcessing.repositories.*;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.common.protocol.types.Field;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,6 +67,12 @@ public class OrderServices implements OrderServicesTemplate {
         Order temp = new Order(UUID.randomUUID().toString());
         temp.setOrder_status("Placed");
         temp.setCreate_date(Date.from(Instant.now()));
+        temp.setOrder_total(order.getOrder_total());
+        temp.setTax(order.getTax());
+        temp.setTotal(order.getTotal());
+        temp.setShipping_charges(order.getShipping_charges());
+        temp.setSubtotal(order.getSubtotal());
+
         Customer customer = new Customer();
         customer.setCustomer_id(order.getCart().getCustomer_id());
         customerRepository.save(customer);
@@ -73,6 +80,7 @@ public class OrderServices implements OrderServicesTemplate {
         Cart cart = new Cart();
         cart.setCustomer_id(customer.getCustomer_id());
         cart.setCart_id(order.getCart().getCart_id());
+        temp.setCart(cart);
         cartRepository.save(cart);
 
         List<Items> itemsList = order.getCart().getCart_items();
@@ -89,6 +97,12 @@ public class OrderServices implements OrderServicesTemplate {
         Order temp = order;
         temp.setOrder_status("Placed");
         temp.setModified_date(Date.from(Instant.now()));
+        temp.setOrder_total(order.getOrder_total());
+        temp.setTax(order.getTax());
+        temp.setTotal(order.getTotal());
+        temp.setShipping_charges(order.getShipping_charges());
+        temp.setSubtotal(order.getSubtotal());
+
         Customer customer = new Customer();
         customer.setCustomer_id(order.getCart().getCustomer_id());
         customerRepository.save(customer);
@@ -96,13 +110,17 @@ public class OrderServices implements OrderServicesTemplate {
         Cart cart = new Cart();
         cart.setCustomer_id(customer.getCustomer_id());
         cart.setCart_id(order.getCart().getCart_id());
+        temp.setCart(cart);
         cartRepository.save(cart);
 
         List<Items> itemsList = order.getCart().getCart_items();
-        for(Items items : itemsList){
-            items.setCart(cart);
-            itemsRepository.save(items);
-        }
+        itemsRepository.deleteAll();
+//        for(Items items : itemsList){
+//            items.setCart(cart);
+//            if(!itemsRepository.existsById(items.getItem_id()))
+//                itemsRepository.save(items);
+//        }
+
         orderRepository.save(temp);
     }
 

@@ -22,7 +22,7 @@ public class ConsumerConfiguration {
     public void getMessage(ConsumerRecords<String, Order> records) throws JsonProcessingException{
 
         for(ConsumerRecord<String, Order> record: records){
-            if(record.value().getPayments() == null){
+            if(record.value().getOrder_id() != null){
                 try{
                     Order order = record.value();
                     orderServicesTemplate.updateBatchOrder(order);

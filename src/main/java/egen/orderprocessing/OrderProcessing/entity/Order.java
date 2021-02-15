@@ -74,6 +74,15 @@ public class Order {
         this.shipping_address = shipping_address;
     }
 
+    public Order(double order_total, double tax, double total, double shipping_charges,
+                 double subtotal){
+        this.order_total = order_total;
+        this.tax = tax;
+        this.total = total;
+        this.shipping_charges = shipping_charges;
+        this.subtotal = subtotal;
+    }
+
     public Address getShipping_address() { return shipping_address; }
 
     public void setShipping_address(Address shipping_address) { this.shipping_address = shipping_address; }
